@@ -8,16 +8,16 @@ const FormSearch = (props) => {
     <Form form={form} name="form_search"
       onFinish={onSearch}
     >
-      <Row align={"middle"}>
-        <Col sm={4} md={4} lg={4}>
-          <label htmlFor="age">อายุ :</label>
+      <Row align={"middle"} gutter={[16,16]}>
+        <Col xs={12} sm={6} md={4} lg={4}>
+          <label htmlFor="age">age :</label>
           <Form.Item name={'age'}>
-            <Input name="age" onChange={(e) => { form.setFieldValue(e.target.name, e.target.value.replace(/[^0-9]/g, '')) }} />
+            <Input name="age" allowClear onChange={(e) => { form.setFieldValue(e.target.name, e.target.value.replace(/[^0-9]/g, '')) }} />
           </Form.Item>
         </Col>
         <Col sm={4} md={4} lg={4}>
           <Button type="primary" htmlType="submit">
-            ค้นหา
+            Search
           </Button>
         </Col>
       </Row>
