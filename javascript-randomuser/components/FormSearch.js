@@ -10,7 +10,7 @@ const FormSearch = (props) => {
     >
       <Row align={"middle"} gutter={[16,16]}>
         <Col xs={12} sm={6} md={4} lg={4}>
-          <label htmlFor="age">age :</label>
+          <label htmlFor="age">age อายุ :</label>
           <Form.Item name={'age'}>
             <Input name="age" allowClear onChange={(e) => { form.setFieldValue(e.target.name, e.target.value.replace(/[^0-9]/g, '')) }} />
           </Form.Item>

@@ -7,11 +7,12 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <main
-    // className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      // className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      style={{ fontFamily: 'Prompt-Regular' }}
     >
-      <div className="flex justify-center !w-[100vw]">
+      {/* <div className="flex justify-center !w-[100vw]"> */}
         <Screen />
-      </div>
+      {/* </div> */}
     </main>
   );
 }

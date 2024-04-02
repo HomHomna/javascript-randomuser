@@ -2,10 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./font.css";
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --font-prompt-regular: Prompt-Regular;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,6 +22,7 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: #efeeee;
+  font-family: var(--font-prompt-regular);
 }
 
 @layer utilities {
@@ -83,4 +87,8 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
+}
+
+.text-bold {
+  font-family: Prompt-Bold;
 }

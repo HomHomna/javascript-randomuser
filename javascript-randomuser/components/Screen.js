@@ -4,7 +4,7 @@ import FormSearch from "./FormSearch";
 import axios from "axios";
 import Image from "next/image";
 import { LoadingOutlined } from '@ant-design/icons';
-import dayjs from "dayjs";
+import ModalDetail from "./ModalDetail";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -18,8 +18,8 @@ const reducer = (state, action) => {
     case "search_data":
       return {
         ...state,
-        show_data: (action.payload?.age !== '' && action.payload?.age !== null) ? state?.default_data?.filter((item) => item.dob.age == action.payload?.age) : state?.default_data?.slice((action.payload.page?.page - 1) * action.payload.page?.page_size, action.payload.page?.page * action.payload.page?.page_size),
-        data: (action.payload?.age !== '' && action.payload?.age !== null) ? state?.default_data?.filter((item) => item.dob.age == action.payload?.age) : state?.default_data
+        show_data: (action.payload?.age !== '' && action.payload?.age !== null && action.payload?.age !== undefined) ? state?.default_data?.filter((item) => item.dob.age == action.payload?.age) : state?.default_data?.slice((action.payload.page?.page - 1) * action.payload.page?.page_size, action.payload.page?.page * action.payload.page?.page_size),
+        data: (action.payload?.age !== '' && action.payload?.age !== null && action.payload?.age !== undefined) ? state?.default_data?.filter((item) => item.dob.age == action.payload?.age) : state?.default_data
       };
     default:
       return { ...state };
@@ -44,7 +44,6 @@ const Screen = (props) => {
     console.log('xxxxx----->>>>>', value);
     dispatch({ type: 'search_data', payload: { age: value?.age, page: { page: 1, page_size: page?.page_size } } })
   }, [page])
-  console.log('value----->>>>>', state);
 
   useEffect(() => {
     const funcGet = async () => {
@@ -94,13 +93,13 @@ const Screen = (props) => {
                     />
                     <br />
                     <div className="name_user">
-                      {`name : ${item?.name?.title}. ${item?.name?.first} ${item?.name?.last}`}
+                      <span className="text-bold">name : </span>{`${item?.name?.title}. ${item?.name?.first} ${item?.name?.last}`}
                     </div>
                     <div className="name_user">
-                      {`age : ${item?.dob?.age}`}
+                      <span className="text-bold">age : </span>{`${item?.dob?.age}`}
                     </div>
                     <div className="email_user">
-                      {`email : ${item?.email}`}
+                      <span className="text-bold">email : </span>{`${item?.email}`}
                     </div>
                   </div>
                 )
@@ -114,47 +113,13 @@ const Screen = (props) => {
         </div>
       </Card>
       <Modal
-        title={`${modal?.data?.name?.title}. ${modal?.data?.name?.first} ${modal?.data?.name?.last}`}
+        title={<span className="text-bold">{`${modal?.data?.name?.title}. ${modal?.data?.name?.first} ${modal?.data?.name?.last}`}</span>}
         open={modal.open}
         onOk={() => setModal({ open: false, data: null })}
         onCancel={() => setModal({ open: false, data: null })}
         footer={<Button onClick={() => setModal({ open: false, data: null })} type="primary">Close</Button>}
       >
-        <div className="detail">
-          {modal?.data !== null &&
-            <Image
-              alt={`${modal?.data?.id?.name}`}
-              src={`${modal?.data?.picture?.large}`}
-              width={220}
-              height={220}
-            />
-          }
-          <br />
-          <div className="name_user">
-            {`name : ${modal?.data?.name?.title}. ${modal?.data?.name?.first} ${modal?.data?.name?.last}`}
-          </div>
-          <div className="name_user">
-            {`gender : ${modal?.data?.gender}`}
-          </div>
-          <div className="name_user">
-            {`date of birth : ${dayjs(modal?.data?.dob?.date).format('DD/MM/YYYY')}`}
-          </div>
-          <div className="name_user">
-            {`age : ${modal?.data?.dob?.age}`}
-          </div>
-          <div className="email_user">
-            {`email : ${modal?.data?.email}`}
-          </div>
-          <div className="email_user">
-            {`phone : ${modal?.data?.phone}`}
-          </div>
-          <div className="email_user">
-            {`gender : ${modal?.data?.gender}`}
-          </div>
-          <div className="email_user">
-            {`location : ${modal?.data?.location?.street?.number} ${modal?.data?.location?.street?.name} ${modal?.data?.location?.city} ${modal?.data?.location?.state} ${modal?.data?.location?.country} ${modal?.data?.location?.postcode}`}
-          </div>
-        </div>
+        <ModalDetail modal={modal} />
       </Modal>
     </>
   )

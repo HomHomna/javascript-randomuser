@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'Prompt-Light';
+  src: url('/fonts/prompt/Prompt-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Prompt-Regular';
+  src: url('/fonts/prompt/Prompt-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Prompt-Bold';
+  src: url('/fonts/prompt/Prompt-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Prompt-Bold-500';
+  font-weight: 500;
+  src: url('/fonts/prompt/Prompt-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Prompt-ExtraLight';
+  src: url('/fonts/prompt/Prompt-ExtraLight.ttf') format('truetype');
+}
+
