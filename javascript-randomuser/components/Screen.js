@@ -61,11 +61,18 @@ const Screen = (props) => {
     setPage({ page: page, page_size: page_size })
   }, [])
 
+  const options = useMemo(() => {
+    if (state?.default_data) {
+      const getAge = state.default_data.map((item) => item.dob.age)
+      const uniqueAges = [...new Set(getAge.map(item => item))]
+      return uniqueAges?.sort((a, b) => a - b)
+    }
+  }, [state?.default_data])
 
   return (
     <>
       <Card className="card">
-        <FormSearch onSearch={funcSearch} />
+        <FormSearch onSearch={funcSearch} options={options} />
         {loading ?
           <Spin
             indicator={

@@ -1,18 +1,24 @@
-import { Row, Col, Input, Form, Button } from "antd";
+import { Row, Col, Input, Form, Button,Select } from "antd";
 
 const FormSearch = (props) => {
-  const { onSearch } = props
+  const { onSearch, options } = props
   const [form] = Form.useForm();
 
   return (
     <Form form={form} name="form_search"
       onFinish={onSearch}
     >
-      <Row align={"middle"} gutter={[16,16]}>
-        <Col xs={12} sm={6} md={4} lg={4}>
+      <Row align={"middle"} gutter={[16, 16]}>
+        {/* <Col xs={12} sm={6} md={4} lg={4}>
           <label htmlFor="age">age อายุ :</label>
           <Form.Item name={'age'}>
             <Input name="age" allowClear onChange={(e) => { form.setFieldValue(e.target.name, e.target.value.replace(/[^0-9]/g, '')) }} />
+          </Form.Item>
+        </Col> */}
+        <Col xs={12} sm={6} md={4} lg={4}>
+          <label htmlFor="age">age อายุ :</label>
+          <Form.Item name={'age'}>
+            <Select name="age" options={options?.map((item) => ({label:item,value:item})) || []} allowClear onChange={(value) => { form.setFieldValue('age', value) }} />
           </Form.Item>
         </Col>
         <Col sm={4} md={4} lg={4}>
