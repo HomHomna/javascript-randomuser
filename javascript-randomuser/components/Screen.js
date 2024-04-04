@@ -41,7 +41,6 @@ const Screen = (props) => {
   }, [data, page])
 
   const funcSearch = useCallback((value) => {
-    console.log('xxxxx----->>>>>', value);
     dispatch({ type: 'search_data', payload: { age: value?.age, page: { page: 1, page_size: page?.page_size } } })
   }, [page])
 
@@ -62,7 +61,6 @@ const Screen = (props) => {
     setPage({ page: page, page_size: page_size })
   }, [])
 
-  console.log('data----->>>>> state', state);
 
   return (
     <>
